@@ -2,3 +2,4 @@
 *.iml
 /out
 /target
+/javafx-vectors-showcase/target

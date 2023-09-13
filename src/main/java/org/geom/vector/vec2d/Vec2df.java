@@ -359,9 +359,14 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
     }
 
     @Override
-    public Vec2d normal() {
+    public Vec2d normalized() {
         float r = 1 / mag();
         return new Vec2df(x * r,y * r);
+    }
+
+    public Vec2df norm(){
+        normalize();
+        return this;
     }
 
     @Override

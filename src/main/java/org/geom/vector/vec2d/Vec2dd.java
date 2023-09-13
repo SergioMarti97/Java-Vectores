@@ -260,7 +260,7 @@ public class Vec2dd implements Vec2d {
     }
 
     @Override
-    public Vec2d normal() {
+    public Vec2d normalized() {
         double r = 1 / mag();
         return new Vec2dd(x * r,y * r);
     }

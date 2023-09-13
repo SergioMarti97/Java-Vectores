@@ -54,7 +54,7 @@ public interface Vec2d {
      * modify the values of the components.
      * @return a new vector which is this vector but normalized.
      */
-    Vec2d normal();
+    Vec2d normalized();
 
     /**
      * Returns the perpendicular vector of this vector.

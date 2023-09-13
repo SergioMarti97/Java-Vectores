@@ -23,6 +23,22 @@ Java dispone de varios tipos de datos primitivos numéricos (short, byte, int, l
 
 ## Operaciones con Vectores
 
+Los vectores implementan la interfaz de java "comparable", para poder ser ordenados y comparados en una colección. Los vectores se ordenan primero en el eje X y a continuación en el eje Y.
+
+Las clases que representan vectores cuentan con constructores y métodos que pueden ser útiles a la hora de inicializar o establecer sus valores.
+
+- Constructores:
+    - Vec(): constructor nulo, inicializa las coordenadas a 0.
+    - Vec(value): inicializa todas las coordenadas con el mismo valor.
+    - Vec(x, y): constructor por defecto para establecer los valores de las coordenadas
+    - Vec(other_vector): constructor copia.
+  
+- Setters:
+    - setX(x): establece el valor de x.
+    - setY(y): establece el valor de y.
+    - set(x, y): establece el valor de x e y.
+    - set(other_vector): copia los valores de otro vector.
+
 Las clases disponen de métodos para realizar las principales y más comunes operaciones matemáticas.
 
 - Suma/Adición:
@@ -30,24 +46,28 @@ Las clases disponen de métodos para realizar las principales y más comunes ope
     - addToX(amount)
     - addToY(amount)
     - add(amount_x, amount_y)
+    - add(other_vector)
     
 - Resta:
     - sub(amount)
     - subToX(amount)
     - subToY(amount)
     - sub(amount_x, amount_y)
+    - sub(other_vector)
     
 - Multiplicación/Escalado:
     - mul(amount)
     - mulXBy(amount)
     - mulYBy(amount)
     - mul(amount_x, amount_y)
+    - mul(other_vector)
 
 - División:
     - div(amount)
     - divXBy(amount)
     - divYBy(amount)
     - div(amount_x, amount_y)
+    - div(other_vector)
   
 Además, los vectores disponen de operaciones propias como:
 
@@ -55,5 +75,21 @@ Además, los vectores disponen de operaciones propias como:
 - Normalizar: dividir las coordenadas por el módulo del vector.
 - Trasladar un determinado ángulo: "rotar" el vector dado un ángulo.
 - Calcular el vector perpendicular respecto a otro.
-- Calcular el vector normal respecto a otro.
+- Calcular el vector normalizado y normalizar las componentes.
+
+Los métodos para realizar operaciones con otros vectores devuelven la instancia del vector original. Por lo que se pueden realizar multiples operaciones concatenadas en una misma línea de código.
+
+```java
+public class OneLineVectorOperationShowcase {
+
+  public static void main(String[] args) {
+    Vec2df v1 = new Vec2df(0.5f, 0.75f);
+    Vec2df v2 = new Vec2df(0.1f, 0.15f);
+    // Múltiples operaciones con vectores concatenadas en una misma línea de código
+    v2.add(v1).sub(new Vec2df(0.4f, 0.3f)).mul(new Vec2df(10)).norm();
+    System.out.println(v2);
+  }
+
+}
+```
     
