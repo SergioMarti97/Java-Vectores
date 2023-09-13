@@ -1,4 +1,4 @@
-package vector.point2d;
+package org.geom.vector.vec2d;
 
 public interface Vec2d {
 

@@ -1,4 +1,4 @@
-package vector.point3d;
+package org.geom.vector.vec3d;
 
 public interface Vec3d {
 

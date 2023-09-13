@@ -1,4 +1,4 @@
-package vector.point2d;
+package org.geom.vector.vec2d;
 
 public class Vec2di implements Vec2d {
 

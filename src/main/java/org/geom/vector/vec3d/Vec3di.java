@@ -1,29 +1,29 @@
-package vector.point3d;
+package org.geom.vector.vec3d;
 
-public class Vec3dd implements Vec3d {
+public class Vec3di implements Vec3d {
 
     /**
      * the x component.
      */
-    private double x;
+    private int x;
 
     /**
      * the y component.
      */
-    private double y;
+    private int y;
 
     /**
      * the z component.
      */
-    private double z;
+    private int z;
 
     /**
      * Void constructor
      */
-    public Vec3dd() {
-        x = 0.0;
-        y = 0.0;
-        z = 1.0;
+    public Vec3di() {
+        x = 0;
+        y = 0;
+        z = 0;
     }
 
     /**
@@ -31,10 +31,10 @@ public class Vec3dd implements Vec3d {
      * @param x the x component.
      * @param y the y component.
      */
-    public Vec3dd(double x, double y) {
+    public Vec3di(int x, int y) {
         this.x = x;
         this.y = y;
-        z = 1.0;
+        z = 0;
     }
 
     /**
@@ -43,7 +43,7 @@ public class Vec3dd implements Vec3d {
      * @param y the y component.
      * @param z the z component.
      */
-    public Vec3dd(double x, double y, double z) {
+    public Vec3di(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -53,7 +53,7 @@ public class Vec3dd implements Vec3d {
      * Constructor with same value for the three components
      * @param v same value for the three components
      */
-    public Vec3dd(double v) {
+    public Vec3di(int v) {
         this.x = v;
         this.y = v;
         this.z = v;
@@ -61,12 +61,12 @@ public class Vec3dd implements Vec3d {
 
     /**
      * Constructor passed by parameter
-     * @param vec3dd the object which we need to copy
+     * @param vec3di the object which we need to copy
      */
-    public Vec3dd(Vec3dd vec3dd) {
-        this.x = vec3dd.getX();
-        this.y = vec3dd.getY();
-        this.z = vec3dd.getZ();
+    public Vec3di(Vec3di vec3di) {
+        this.x = vec3di.getX();
+        this.y = vec3di.getY();
+        this.z = vec3di.getZ();
     }
 
     /**
@@ -74,7 +74,7 @@ public class Vec3dd implements Vec3d {
      * pass as a parameter
      * @param amount the amount to add to both components
      */
-    public void add(double amount) {
+    public void add(float amount) {
         x += amount;
         y += amount;
         z += amount;
@@ -85,7 +85,7 @@ public class Vec3dd implements Vec3d {
      * pass as a parameter
      * @param amount the amount to add to the x component
      */
-    public void addToX(double amount) {
+    public void addToX(int amount) {
         x += amount;
     }
 
@@ -94,7 +94,7 @@ public class Vec3dd implements Vec3d {
      * pass as a parameter
      * @param amount the amount to add to the y component
      */
-    public void addToY(double amount) {
+    public void addToY(int amount) {
         y += amount;
     }
 
@@ -103,7 +103,7 @@ public class Vec3dd implements Vec3d {
      * pass as a parameter
      * @param amount the amount to add to the z component
      */
-    public void addToZ(double amount) {
+    public void addToZ(int amount) {
         z += amount;
     }
 
@@ -112,7 +112,7 @@ public class Vec3dd implements Vec3d {
      * pass as a parameter
      * @param amount the amount to multiply both components
      */
-    public void multiply(double amount) {
+    public void multiply(int amount) {
         x *= amount;
         y *= amount;
         z *= amount;
@@ -123,7 +123,7 @@ public class Vec3dd implements Vec3d {
      * as a parameter
      * @param amount the amount to multiply the x component
      */
-    public void multiplyXBy(double amount) {
+    public void multiplyXBy(int amount) {
         x *= amount;
     }
 
@@ -132,7 +132,7 @@ public class Vec3dd implements Vec3d {
      * as a parameter
      * @param amount the amount to multiply the y component
      */
-    public void multiplyYBy(double amount) {
+    public void multiplyYBy(int amount) {
         y *= amount;
     }
 
@@ -141,62 +141,8 @@ public class Vec3dd implements Vec3d {
      * as a parameter
      * @param amount the amount to multiply the z component
      */
-    public void multiplyZBy(double amount) {
+    public void multiplyZBy(int amount) {
         z *= amount;
-    }
-
-    /**
-     * @return the x component.
-     */
-    public double getX() {
-        return x;
-    }
-
-    /**
-     * @return the y component.
-     */
-    public double getY() {
-        return y;
-    }
-
-    /**
-     * @return the z component.
-     */
-    public double getZ() {
-        return z;
-    }
-
-    /**
-     * @param x the new value of the x component.
-     */
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    /**
-     * @param y the new value of the y component.
-     */
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    /**
-     * @param z the new value of the z component.
-     */
-    public void setZ(double z) {
-        this.z = z;
-    }
-
-    public void set(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    public void set(double v) {
-        this.x = v;
-        this.y = v;
-        this.z = v;
     }
 
     /**
@@ -208,8 +154,8 @@ public class Vec3dd implements Vec3d {
      *
      * @return the magnitude of the vector
      */
-    public double mag() {
-        return Math.sqrt(mag2());
+    public int mag() {
+        return (int)(Math.sqrt(mag2()));
     }
 
     /**
@@ -225,7 +171,7 @@ public class Vec3dd implements Vec3d {
      *
      * @return two times the magnitude of the vector
      */
-    public double mag2() {
+    public int mag2() {
         return (x * x) + (y * y) + (z * z);
     }
 
@@ -234,18 +180,54 @@ public class Vec3dd implements Vec3d {
      * two vectors.
      * @return an amount that represents the similarity.
      */
-    public double dotProduct(Vec3dd vec) {
+    public int dotProduct(Vec3di vec) {
         return x * vec.getX() + y * vec.getY() + z * vec.getZ();
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
+
+    public void set(int x, int y, int z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public void set(int v) {
+        this.x = v;
+        this.y = v;
+        this.z = v;
     }
 
 
     @Override
     public void set(Vec3d vec3d) {
-        if (vec3d instanceof Vec3dd) {
-            Vec3dd vec = (Vec3dd) vec3d;
-            this.x = vec.getX();
-            this.y = vec.getY();
-            this.z = vec.getZ();
+        if ( vec3d instanceof Vec3di) {
+            Vec3di vec3di = (Vec3di) vec3d;
+            this.x = vec3di.getX();
+            this.y = vec3di.getY();
+            this.z = vec3di.getZ();
         } else {
             // todo: put here the rest of vector types.
         }
@@ -253,47 +235,47 @@ public class Vec3dd implements Vec3d {
 
     @Override
     public void add(Vec3d vec3d) {
-        if (vec3d instanceof Vec3dd) {
-            Vec3dd vec = (Vec3dd) vec3d;
-            this.x += vec.getX();
-            this.y += vec.getY();
-            this.z += vec.getZ();
+        if ( vec3d instanceof Vec3df) {
+            Vec3df vec3df = (Vec3df) vec3d;
+            this.x += vec3df.getX();
+            this.y += vec3df.getY();
+            this.z += vec3df.getZ();
         }
     }
 
     @Override
     public void sub(Vec3d vec3d) {
-        if (vec3d instanceof Vec3dd) {
-            Vec3dd vec = (Vec3dd) vec3d;
-            this.x -= vec.getX();
-            this.y -= vec.getY();
-            this.z -= vec.getZ();
+        if ( vec3d instanceof Vec3di) {
+            Vec3di vec3di = (Vec3di) vec3d;
+            this.x -= vec3di.getX();
+            this.y -= vec3di.getY();
+            this.z -= vec3di.getZ();
         }
     }
 
     @Override
     public void multiply(Vec3d vec3d) {
-        if (vec3d instanceof Vec3dd) {
-            Vec3dd vec = (Vec3dd) vec3d;
-            this.x *= vec.getX();
-            this.y *= vec.getY();
-            this.z *= vec.getZ();
+        if ( vec3d instanceof Vec3di) {
+            Vec3di vec3di = (Vec3di) vec3d;
+            this.x *= vec3di.getX();
+            this.y *= vec3di.getY();
+            this.z *= vec3di.getZ();
         }
     }
 
     @Override
     public void divide(Vec3d vec3d) {
-        if (vec3d instanceof Vec3dd) {
-            Vec3dd vec = (Vec3dd) vec3d;
-            this.x /= vec.getX();
-            this.y /= vec.getY();
-            this.z /= vec.getZ();
+        if ( vec3d instanceof Vec3di) {
+            Vec3di vec3di = (Vec3di) vec3d;
+            this.x /= vec3di.getX();
+            this.y /= vec3di.getY();
+            this.z /= vec3di.getZ();
         }
     }
 
     @Override
     public void normalize() {
-        double l = mag();
+        int l = mag();
         this.x /= l;
         this.y /= l;
         this.z /= l;
@@ -301,8 +283,8 @@ public class Vec3dd implements Vec3d {
 
     @Override
     public Vec3d normal() {
-        double r = 1 / mag();
-        return new Vec3dd(x * r,y * r,z * r);
+        float r = 1 / mag();
+        return new Vec3df(x * r,y * r,z * r);
     }
 
     @Override
@@ -314,5 +296,6 @@ public class Vec3dd implements Vec3d {
     public String toString() {
         return "X: " + x + " Y: " + y + " Z: " + z;
     }
+
 
 }
