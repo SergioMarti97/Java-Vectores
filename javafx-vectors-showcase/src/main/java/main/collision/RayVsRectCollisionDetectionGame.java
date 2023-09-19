@@ -1,4 +1,4 @@
-package main;
+package main.collision;
 
 import game.AbstractGame;
 import game.GameApplication;

@@ -113,6 +113,14 @@ public class Rect2df extends Rect<Vec2df> {
         return pos.getY() + size.getY();
     }
 
+    public Vec2df getTopLeft() {
+        return new Vec2df(getLeft(), getTop());
+    }
+
+    public Vec2df getBottomRight() {
+        return new Vec2df(getRight(), getBottom());
+    }
+
     public void setLeft(float left) {
         float diff = left - getLeft();
         size.addToX(-diff);

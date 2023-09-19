@@ -7,12 +7,12 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
     /**
      * x component
      */
-    private float x;
+    protected float x;
 
     /**
      * y component
      */
-    private float y;
+    protected float y;
 
     /**
      * Void constructor
@@ -59,9 +59,10 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * pass as a parameter
      * @param amount the amount to add to both components
      */
-    public void add(float amount) {
+    public Vec2df add(float amount) {
         x += amount;
         y += amount;
+        return this;
     }
 
     /**
@@ -69,8 +70,9 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * pass as a parameter
      * @param amount the amount to add to the x component
      */
-    public void addToX(float amount) {
+    public Vec2df addToX(float amount) {
         x += amount;
+        return this;
     }
 
     /**
@@ -78,8 +80,9 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * pass as a parameter
      * @param amount the amount to add to the y component
      */
-    public void addToY(float amount) {
+    public Vec2df addToY(float amount) {
         y += amount;
+        return this;
     }
 
     /**
@@ -88,31 +91,36 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * @param x the amount to add to x
      * @param y the amount to add to y
      */
-    public void add(float x, float y) {
+    public Vec2df add(float x, float y) {
         addToX(x);
         addToY(y);
+        return this;
     }
 
     // ********************** //
     // Subtraction operations //
     // ********************** //
 
-    public void sub(float amount) {
+    public Vec2df sub(float amount) {
         x -= amount;
         y -= amount;
+        return this;
     }
 
-    public void subToX(float amount) {
+    public Vec2df subToX(float amount) {
         x -= amount;
+        return this;
     }
 
-    public void subToY(float amount) {
+    public Vec2df subToY(float amount) {
         y -= amount;
+        return this;
     }
 
-    public void sub(float x, float y) {
+    public Vec2df sub(float x, float y) {
         subToX(x);
         subToY(y);
+        return this;
     }
 
     // ******************* //
@@ -124,9 +132,10 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * pass as a parameter
      * @param amount the amount to multiply both components
      */
-    public void mul(float amount) {
+    public Vec2df mul(float amount) {
         x *= amount;
         y *= amount;
+        return this;
     }
 
     /**
@@ -134,8 +143,9 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * as a parameter
      * @param amount the amount to multiply the x component
      */
-    public void mulXBy(float amount) {
+    public Vec2df mulXBy(float amount) {
         x *= amount;
+        return this;
     }
 
     /**
@@ -143,35 +153,41 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * as a parameter
      * @param amount the amount to multiply the y component
      */
-    public void mulYBy(float amount) {
+    public Vec2df mulYBy(float amount) {
         y *= amount;
+        return this;
     }
 
-    public void mul(float x, float y) {
+    public Vec2df mul(float x, float y) {
         mulXBy(x);
         mulYBy(y);
+        return this;
     }
 
     // ******************* //
     // Division operations //
     // ******************* //
 
-    public void div(float amount) {
+    public Vec2df div(float amount) {
         x /= amount;
         y /= amount;
+        return this;
     }
 
-    public void divXBy(float amount) {
+    public Vec2df divXBy(float amount) {
         x /= amount;
+        return this;
     }
 
-    public void divYBy(float amount) {
+    public Vec2df divYBy(float amount) {
         y /= amount;
+        return this;
     }
 
-    public void div(float x, float y) {
+    public Vec2df div(float x, float y) {
         divXBy(x);
         divYBy(y);
+        return this;
     }
 
     /**
@@ -194,16 +210,18 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * Setter for the x component
      * @param x the new value for the x component
      */
-    public void setX(float x) {
+    public Vec2df setX(float x) {
         this.x = x;
+        return this;
     }
 
     /**
      * Setter for the y component
      * @param y the new value for the y component
      */
-    public void setY(float y) {
+    public Vec2df setY(float y) {
         this.y = y;
+        return this;
     }
 
     /**
@@ -211,14 +229,16 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
      * @param x new value for x
      * @param y new value for y
      */
-    public void set(float x, float y) {
+    public Vec2df set(float x, float y) {
         this.x = x;
         this.y = y;
+        return this;
     }
 
-    public void set(float v) {
+    public Vec2df set(float v) {
         this.x = v;
         this.y = v;
+        return this;
     }
 
     /**
@@ -374,6 +394,12 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
         return new Vec2df(-y, x);
     }
 
+    public Vec2df perp() {
+        this.x = -y;
+        this.y = x;
+        return this;
+    }
+
     @Override
     public void translateThisAngle(float angle) {
         angle *= (Math.PI / 180.0f);
@@ -385,6 +411,113 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
 
     public Vec2df negative() {
         return new Vec2df(-x, -y);
+    }
+
+    public Vec2df abs() {
+        return new Vec2df(Math.abs(x), Math.abs(y));
+    }
+
+    public Vec2df absCords() {
+        this.x = Math.abs(x);
+        this.y = Math.abs(y);
+        return this;
+    }
+
+    public Vec2df floor() {
+        return new Vec2df((float)Math.floor(x), (float)Math.floor(y));
+    }
+
+    public Vec2df floorCords() {
+        this.x = (float)Math.floor(x);
+        this.y = (float)Math.floor(y);
+        return this;
+    }
+
+    public Vec2df ceil() {
+        return new Vec2df((float)Math.ceil(x), (float)Math.ceil(y));
+    }
+
+    public Vec2df ceilCords() {
+        this.x = (float)Math.ceil(x);
+        this.y = (float)Math.ceil(y);
+        return this;
+    }
+
+    public Vec2df max(Vec2df v) {
+        return new Vec2df(Math.max(this.x, v.x), Math.max(this.y, v.y));
+    }
+
+    public Vec2df min(Vec2df v) {
+        return new Vec2df(Math.min(this.x, v.x), Math.min(this.y, v.y));
+    }
+
+    public Vec2df clamp(Vec2df min, Vec2df max) {
+        return this.max(min).min(max);
+    }
+
+    public Vec2df cart() {
+        return new Vec2df((float)Math.cos(y) * x, (float)Math.sin(y) * x);
+    }
+
+    public Vec2df cartCords() {
+        this.x = (float)Math.cos(y) * x;
+        this.y = (float)Math.sin(y) * x;
+        return this;
+    }
+
+    public Vec2df polar() {
+        return new Vec2df(mag(), (float) Math.atan2(y, x));
+    }
+
+    public Vec2df polarCords() {
+        this.x = mag();
+        this.y = (float) Math.atan2(y, x);
+        return this;
+    }
+
+    public float lerpX(float x, float t) {
+        return this.x * (1 - t) + x * t;
+    }
+
+    public float lerpY(float y, float t) {
+        return this.y * (1 - t) + y * t;
+    }
+
+    public Vec2df lerp(Vec2df v, float t) {
+        return new Vec2df(
+                x * (1 - t) + v.x * t,
+                y * (1 - t) + v.y * t
+        );
+    }
+
+    public Vec2df lerpCords(Vec2df v, float t) {
+        this.x = this.x * (1 - t) + v.x * t;
+        this.y = this.y * (1 - t) + v.y * t;
+        return this;
+    }
+
+    public Vec2df medVec(Vec2df v) {
+        return lerp(v, 0.5f);
+    }
+
+    public Vec2df medVecCord(Vec2df v) {
+        return lerpCords(v, 0.5f);
+    }
+
+    public boolean isParallel(Vec2df v) {
+        return (this.x / v.x) == (this.y / v.y);
+    }
+
+    public boolean isPerp(Vec2df v) {
+        return this.dotProduct(v) == 0;
+    }
+
+    public float angle(Vec2df v) {
+        return (float) Math.acos(this.dotProduct(v) / (this.mag() * v.mag()));
+    }
+
+    public float projection(Vec2df v) {
+        return Math.abs(v.dotProduct(this)) / this.mag();
     }
 
     /**
@@ -428,9 +561,24 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
         return Float.compare(vec2df.getX(), getX()) == 0 && Float.compare(vec2df.getY(), getY()) == 0;
     }
 
+    public boolean lessThan(Vec2df v) {
+        return this.y < v.y || (this.y == v.y && this.x < v.x);
+    }
+
+    public boolean greaterThan(Vec2df v) {
+        return this.y > v.y || (this.y == v.y && this.x > v.x);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(getX(), getY());
+    }
+
+    public static Vec2df medVec(Vec2df v1, Vec2df v2) {
+        return new Vec2df(
+                (v1.x + v2.x) / 2f,
+                (v1.y + v2.y) / 2f
+        );
     }
 
 }

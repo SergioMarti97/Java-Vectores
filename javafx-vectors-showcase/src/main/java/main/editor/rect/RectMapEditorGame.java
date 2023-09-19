@@ -1,19 +1,21 @@
-package main;
+package main.editor.rect;
 
 import game.AbstractGame;
 import game.GameApplication;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import main.editor.io.Rect2dfIO;
 import org.geom.shape.rectangle.Rect2df;
 import org.geom.vector.vec2d.Vec2df;
 import pan.and.zoom.PanAndZoomGraphicContext;
 import pan.and.zoom.PanAndZoomUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RectMapEditorGame extends AbstractGame {
+
+    private final String fileName = "C:\\Users\\Sergio\\IdeaProjects\\java-vectors\\javafx-vectors-showcase\\src\\main\\resources\\map.txt";
 
     private PanAndZoomGraphicContext pz;
 
@@ -29,20 +31,26 @@ public class RectMapEditorGame extends AbstractGame {
 
     private Vec2df end;
 
+    private Vec2df mouseOffset;
+
+    private Rect2df selectedRect;
+
     private void drawRect(PanAndZoomGraphicContext g, Rect2df r) {
         g.strokeRect(r.getPos(), r.getSize());
     }
     
     @Override
     public void initialize(GameApplication gc) {
+        rects = new Rect2dfIO(fileName).read();
+
         pz = new PanAndZoomGraphicContext(gc.getGraphicsContext());
         mouse = new Vec2df();
-        arena = new Rect2df(0, 0, 100, 100);
-
-        rects = new ArrayList<>();
+        arena = new Rect2df(0, 0, 1000, 1000);
 
         start = null;
         end = null;
+        mouseOffset = new Vec2df();
+        selectedRect = null;
     }
 
     @Override
@@ -53,14 +61,28 @@ public class RectMapEditorGame extends AbstractGame {
 
         if (gc.getInput().isButtonDown(MouseButton.PRIMARY)) {
             start = new Vec2df(this.mouse);
+            for (var r : rects) {
+                if (r.contains(this.mouse)) {
+                    mouseOffset = new Vec2df(this.mouse).sub(r.getPos());
+                    selectedRect = r;
+                    break;
+                }
+            }
+            rects.remove(selectedRect);
         }
 
         if (gc.getInput().isButtonUp(MouseButton.PRIMARY)) {
-            end = new Vec2df(this.mouse);
-            rects.add(new Rect2df(start, new Vec2df(end).sub(start)));
+            if (selectedRect != null) {
+                selectedRect.setPos(new Vec2df(this.mouse).sub(mouseOffset));
+                rects.add(selectedRect);
+                selectedRect = null;
+            } else {
+                end = new Vec2df(this.mouse);
+                rects.add(new Rect2df(start, new Vec2df(end).sub(start)));
 
-            start = null;
-            end = null;
+                start = null;
+                end = null;
+            }
         }
 
     }
@@ -90,6 +112,21 @@ public class RectMapEditorGame extends AbstractGame {
             g.setStroke(Color.YELLOW);
             Rect2df r = new Rect2df(start, new Vec2df(mouse).sub(start));
             drawRect(pz, r);
+        }
+
+        // Dibujar el rectángulo seleccionado con el ratón
+        if (selectedRect != null) {
+            g.setStroke(Color.YELLOW);
+            drawRect(pz, new Rect2df(new Vec2df(mouse).sub(mouseOffset), selectedRect.getSize()));
+        }
+    }
+
+    @Override
+    public void stop(GameApplication gc) {
+        super.stop(gc);
+        boolean isSaved = new Rect2dfIO(fileName).save(rects);
+        if (isSaved) {
+            System.out.println("Saved: ok");
         }
     }
 

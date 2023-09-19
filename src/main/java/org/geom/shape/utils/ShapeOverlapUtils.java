@@ -16,6 +16,16 @@ public class ShapeOverlapUtils {
                 p.getY() < r.getPos().getY() + r.getSize().getY();
     }
 
+    // Linear interpolation: lerp
+
+    public static float lerp(float start, float end, float t) {
+        return start * (1 - t) + end * t;
+    }
+
+    public static Vec2df lerp(Vec2df start, Vec2df end, float t) {
+        return new Vec2df(lerp(start.getX(), end.getX(), t), lerp(start.getY(), end.getY(), t));
+    }
+
     // Rect vs Rect
 
     public static boolean rectVsRect(Rect2df r1, Rect2df r2) {

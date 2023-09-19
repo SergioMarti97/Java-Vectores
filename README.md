@@ -43,6 +43,9 @@ Las clases disponen de métodos para realizar las principales y más comunes ope
 
 - Suma/Adición:
     - add(amount)
+```java
+  
+  ```
     - addToX(amount)
     - addToY(amount)
     - add(amount_x, amount_y)

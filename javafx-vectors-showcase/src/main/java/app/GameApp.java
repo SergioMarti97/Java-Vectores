@@ -1,9 +1,10 @@
 package app;
 
 import game.GameApplication;
-import main.RayVsRectCollisionDetectionGame;
-import main.RectMapEditorGame;
-import main.RectVsRectCollisionDetectionGame;
+import main.collision.RectVsRectCollisionDetectionGame;
+import main.editor.rect.RectMapEditorGame;
+import main.editor.vec.VectorEditorGame;
+import main.spline.SplineGame;
 
 public class GameApp extends GameApplication {
 
@@ -11,7 +12,7 @@ public class GameApp extends GameApplication {
     public void init() throws Exception {
         super.init();
         setAppName("Continuos Collision Game");
-        setGame(new RectMapEditorGame());
+        setGame(new RectVsRectCollisionDetectionGame());
     }
 
 }
