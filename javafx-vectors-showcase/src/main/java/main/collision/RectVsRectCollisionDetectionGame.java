@@ -8,7 +8,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
-import main.collision.verlet.VerletRect2df;
 import main.editor.io.Rect2dfIO;
 import org.geom.shape.rectangle.Rect2df;
 import org.geom.shape.utils.ShapeOverlapUtils;
@@ -121,8 +120,7 @@ public class RectVsRectCollisionDetectionGame extends AbstractGame {
         for (var r : listRect) {
             tree.insert(r, new Rect2df(r));
         }
-        // r = new Rect2df(0, 0, 10.0f, 15.0f);
-        r = new VerletRect2df(0, 0, 10.0f, 15.0f);
+        r = new Rect2df(0, 0, 10.0f, 15.0f);
         tree.insert(r, new Rect2df(r));
 
         searchArea = new Rect2df();
