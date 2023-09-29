@@ -1,7 +1,7 @@
 package main.editor.rect;
 
-import game.AbstractGame;
-import game.GameApplication;
+import org.javafx.game.AbstractGame;
+import org.javafx.game.GameApplication;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;

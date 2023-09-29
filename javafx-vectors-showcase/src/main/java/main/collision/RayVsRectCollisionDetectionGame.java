@@ -1,8 +1,8 @@
 package main.collision;
 
-import game.AbstractGame;
-import game.GameApplication;
-import game.input.Input;
+import org.javafx.game.AbstractGame;
+import org.javafx.game.GameApplication;
+import org.javafx.game.input.Input;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;

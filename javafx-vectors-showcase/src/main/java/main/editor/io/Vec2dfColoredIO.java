@@ -1,8 +1,9 @@
 package main.editor.io;
 
 import main.editor.vec.Vec2dfColored;
+import org.simple.db.io.PlainTextIO;
 
-public class Vec2dfColoredIO extends BasicIO<Vec2dfColored> {
+public class Vec2dfColoredIO extends PlainTextIO<Vec2dfColored> {
 
     public Vec2dfColoredIO(String fileName) {
         super(fileName);

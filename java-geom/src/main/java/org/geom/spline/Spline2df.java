@@ -4,7 +4,6 @@ import org.geom.vector.vec2d.Vec2df;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Spline2df extends Spline<Vec2df> {
 

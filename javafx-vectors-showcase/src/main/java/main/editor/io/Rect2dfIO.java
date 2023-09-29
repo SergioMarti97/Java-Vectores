@@ -1,8 +1,9 @@
 package main.editor.io;
 
 import org.geom.shape.rectangle.Rect2df;
+import org.simple.db.io.PlainTextIO;
 
-public class Rect2dfIO extends BasicIO<Rect2df> {
+public class Rect2dfIO extends PlainTextIO<Rect2df> {
 
     public Rect2dfIO(String fileName) {
         super(fileName);

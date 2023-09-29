@@ -1,6 +1,6 @@
 package main.collision;
 
-import game.GameApplication;
+import org.javafx.game.GameApplication;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;

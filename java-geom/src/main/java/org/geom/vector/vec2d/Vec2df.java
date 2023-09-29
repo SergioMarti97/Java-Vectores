@@ -427,6 +427,16 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
         return new Vec2df((float)Math.floor(x), (float)Math.floor(y));
     }
 
+    public Vec2df floorX() {
+        setX((float)Math.floor(x));
+        return this;
+    }
+
+    public Vec2df floorY() {
+        setY((float)Math.floor(y));
+        return this;
+    }
+
     public Vec2df floorCords() {
         this.x = (float)Math.floor(x);
         this.y = (float)Math.floor(y);
@@ -435,6 +445,16 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
 
     public Vec2df ceil() {
         return new Vec2df((float)Math.ceil(x), (float)Math.ceil(y));
+    }
+
+    public Vec2df ceilX() {
+        this.x = (float)Math.ceil(x);
+        return this;
+    }
+
+    public Vec2df ceilY() {
+        this.y = (float)Math.ceil(y);
+        return this;
     }
 
     public Vec2df ceilCords() {
@@ -447,12 +467,72 @@ public class Vec2df implements Vec2d, Comparable<Vec2df> {
         return new Vec2df(Math.max(this.x, v.x), Math.max(this.y, v.y));
     }
 
+    public Vec2df max(float x, float y) {
+        return new Vec2df(Math.max(this.x, x), Math.max(this.y, y));
+    }
+
+    public Vec2df maxCords(Vec2df v) {
+        this.x = Math.max(x, v.x);
+        this.y = Math.max(y, v.y);
+        return this;
+    }
+
+    public Vec2df maxCords(float x, float y) {
+        this.x = Math.max(this.x, x);
+        this.y = Math.max(this.y, y);
+        return this;
+    }
+
+    public Vec2df maxX(float maxX) {
+        setX(Math.max(this.x, maxX));
+        return this;
+    }
+
+    public Vec2df maxY(float maxY) {
+        setY(Math.max(this.y, maxY));
+        return this;
+    }
+
     public Vec2df min(Vec2df v) {
         return new Vec2df(Math.min(this.x, v.x), Math.min(this.y, v.y));
     }
 
+    public Vec2df min(float x, float y) {
+        return new Vec2df(Math.min(this.x, x), Math.min(this.y, y));
+    }
+
+    public Vec2df minCords(Vec2df v) {
+        this.x = Math.min(x, v.x);
+        this.y = Math.min(y, v.y);
+        return this;
+    }
+
+    public Vec2df minCords(float x, float y) {
+        this.x = Math.min(this.x, x);
+        this.y = Math.min(this.y, y);
+        return this;
+    }
+
+    public Vec2df minX(float minX) {
+        setX(Math.min(this.x, minX));
+        return this;
+    }
+
+    public Vec2df minY(float minY) {
+        setY(Math.min(this.y, minY));
+        return this;
+    }
+
     public Vec2df clamp(Vec2df min, Vec2df max) {
         return this.max(min).min(max);
+    }
+
+    public Vec2df clampX(float min, float max) {
+        return this.maxX(min).minX(max);
+    }
+
+    public Vec2df clampY(float min, float max) {
+        return this.maxY(min).minY(max);
     }
 
     public Vec2df cart() {

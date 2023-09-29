@@ -1,11 +1,9 @@
 package main;
 
-import game.AbstractGame;
-import game.GameApplication;
-import game.input.Input;
-import javafx.scene.canvas.GraphicsContext;
+import org.javafx.game.AbstractGame;
+import org.javafx.game.GameApplication;
+import org.javafx.game.input.Input;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Color;
 import org.geom.shape.rectangle.Rect2df;
 import org.geom.vector.vec2d.Vec2df;
 import pan.and.zoom.PanAndZoomGraphicContext;

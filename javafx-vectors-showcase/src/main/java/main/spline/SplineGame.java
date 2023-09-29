@@ -1,36 +1,34 @@
 package main.spline;
 
-import game.AbstractGame;
-import game.GameApplication;
+import org.javafx.game.GameApplication;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import main.PanAndZoomAbstractGame;
 import org.geom.shape.rectangle.Rect2df;
 import org.geom.spline.Spline2df;
 import org.geom.vector.vec2d.Vec2df;
 import pan.and.zoom.PanAndZoomGraphicContext;
-import pan.and.zoom.PanAndZoomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SplineGame extends AbstractGame {
-
-    private PanAndZoomGraphicContext pz;
-
-    private Vec2df mouse;
-
-    private Rect2df screen;
-
-    private Rect2df arena;
+public class SplineGame extends PanAndZoomAbstractGame {
 
     private Spline2df path;
 
     private int idSelectedPoint = 0;
+
+    private void drawLine(PanAndZoomGraphicContext g, Vec2df s, Vec2df e, float lineWidth) {
+        double cacheLineWidth = g.getGc().getLineWidth();
+        g.getGc().setLineWidth(g.scaleToScreenX(lineWidth));
+        g.strokeLine(s, e);
+        g.getGc().setLineWidth(cacheLineWidth);
+    }
     
     @Override
     public void initialize(GameApplication gc) {
+        super.initialize(gc);
         gc.getGraphicsContext().setLineWidth(0.1);
 
         pz = new PanAndZoomGraphicContext(gc.getGraphicsContext());
@@ -47,9 +45,7 @@ public class SplineGame extends AbstractGame {
 
     @Override
     public void update(GameApplication gc, float dt) {
-        pz.handlePanAndZoom(gc, MouseButton.MIDDLE, 0.001f, true, true);
-        Vec2df mouse = new Vec2df((float)gc.getInput().getMouseX(), (float)gc.getInput().getMouseY());
-        this.mouse.set(PanAndZoomUtils.screenToWorld(mouse, pz.getWorldOffset(), pz.getWorldScale()));
+        super.update(gc, dt);
 
         // Spline control
 
@@ -95,8 +91,7 @@ public class SplineGame extends AbstractGame {
         pz.getGc().setLineWidth(1);
         pz.strokeRect(arena.getPos(), arena.getSize());
 
-        // draw spline
-        pz.setStroke(Color.WHITE);
+        // lines
         final float inc = 0.05f;
         List<Vec2df> l = new ArrayList<>();
         for (float t = 0.0f; t < (float) path.getP().size() - 3; t += inc) {
@@ -104,6 +99,10 @@ public class SplineGame extends AbstractGame {
         }
         int i;
         Vec2df s, e;
+
+        final float lineWidth = 1f;
+        double cacheLineWidth = pz.getGc().getLineWidth();
+        pz.getGc().setLineWidth(pz.scaleToScreenX(lineWidth));
         for (i = 0; i < l.size() - 2; i++) {
             s = l.get(i);
             e = l.get(i + 1);
@@ -112,7 +111,9 @@ public class SplineGame extends AbstractGame {
         s = l.get(i);
         e = l.get(i + 1);
         pz.strokeLine(s, e);
+        pz.getGc().setLineWidth(cacheLineWidth);
 
+        // dots
         pz.setStroke(Color.RED);
         final float radius = 0.5f;
         for (i = 0; i < path.getP().size(); i++) {
@@ -120,5 +121,6 @@ public class SplineGame extends AbstractGame {
             g.setStroke(i != idSelectedPoint ? Color.RED : Color.YELLOW);
             pz.strokeOval(new Vec2df(p).sub(new Vec2df(radius)), new Vec2df(radius * 2f));
         }
+
     }
 }
